@@ -1,28 +1,30 @@
 module.exports = {
+  trailingSlash: true,
   async rewrites() {
     return [
       {
-        source: '/team',
-        destination: '/about',
+        source: '/ohaka/pref-:prefecture([a-z]+)/list/',
+        destination: '/ohaka/pref/:prefecture/list',
       },
       {
-        source: '/about-us',
-        destination: '/about',
+        source: '/ohaka/pref-:prefecture([a-z]+)/city-:city(\\d+)/list/',
+        destination: '/ohaka/pref/:prefecture/city/:city/list',
       },
-      // Path Matching - will match `/post/a` but not `/post/a/b`
       {
-        source: '/post/:slug',
-        destination: '/news/:slug',
+        source: '/ohaka/pref-:prefecture([a-z]+)/cond-:condition([a-z_]+-[a-z_]+)/list/',
+        destination: '/ohaka/pref/:prefecture/cond/:condition/list',
       },
-      // Wildcard Path Matching - will match `/blog/a` and `/blog/a/b`
       {
-        source: '/blog/:slug*',
-        destination: '/news/:slug*',
+        source: '/ohaka/pref-:prefecture([a-z]+)/city-:city(\\d+)/cond-:condition([a-z_]+-[a-z_]+)/list/',
+        destination: '/ohaka/pref/:prefecture/city/:city/cond/:condition/list',
       },
-      // Rewriting to an external URL
       {
-        source: '/docs/:slug',
-        destination: 'http://example.com/docs/:slug',
+        source: '/ohaka/pref-:prefecture([a-z]+)/st-:station(\\d+)/list/',
+        destination: '/ohaka/pref/:prefecture/st/:station/list',
+      },
+      {
+        source: '/ohaka/pref-:prefecture([a-z]+)/st-:station(\\d+)/cond-:condition([a-z_]+-[a-z_]+)/list/',
+        destination: '/ohaka/pref/:prefecture/st/:station/cond/:condition/list',
       },
     ]
   },
